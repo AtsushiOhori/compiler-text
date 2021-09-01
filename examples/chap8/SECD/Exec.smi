@@ -1,0 +1,8 @@
+_require "basis.smi"
+_require "compiler/libs/env/main/SEnv.smi"
+_require "./Value.smi"
+_require "./Instruction.smi"
+structure Exec = struct
+  exception RuntimeError
+  val run : Value.E -> string * Instruction.C -> Value.E
+end

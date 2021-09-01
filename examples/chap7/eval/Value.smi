@@ -1,0 +1,15 @@
+_require "basis.smi"
+_require "compiler/libs/env/main/SEnv.smi"
+_require "../parser/Syntax.smi"
+structure Value = struct
+  datatype value 
+    = INT of int
+    | BOOL of bool
+    | STRING of string
+    | PAIR of value * value
+    | CLS of env * string * Syntax.exp
+    | REC of env * string * string * Syntax.exp
+  withtype env = value SEnv.map
+  val emptyEnv : env
+  val valueToString : value -> string
+end

@@ -1,0 +1,21 @@
+_require "basis.smi"
+_require "compiler/libs/env/main/SSet.smi"
+_require "compiler/libs/env/main/SEnv.smi"
+_require "./Type.smi"
+structure TypeUtils =
+struct
+  type subst = Type.ty SEnv.map
+  type tyEnv = Type.ty SEnv.map
+  val substTy : subst -> Type.ty -> Type.ty
+  val emptySubst : subst
+  val substTyEnv : subst -> tyEnv -> tyEnv
+  val composeSubst : subst -> subst -> subst
+  val freshInst : Type.ty -> Type.ty
+  val emptyTyEnv : tyEnv
+  val singletonTyEnv : string * Type.ty -> tyEnv
+  val findTyEnv : tyEnv * string -> Type.ty option
+  val matches : tyEnv * tyEnv -> (Type.ty * Type.ty) list
+  val unionTyEnv : tyEnv * tyEnv -> tyEnv
+  val removeTyEnv : tyEnv * string -> tyEnv
+  val tyEnvToString : tyEnv -> string
+end

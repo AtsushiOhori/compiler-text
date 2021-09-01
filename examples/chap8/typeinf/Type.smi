@@ -1,0 +1,10 @@
+_require "basis.smi"
+structure Type =
+struct
+  datatype ty 
+  = TYVARty of string | INTty | STRINGty | BOOLty 
+  | FUNty of ty * ty | PAIRty of ty * ty
+  | POLYty of string list * ty
+  val newTy : unit -> ty
+  val tyToString : ty -> string
+end

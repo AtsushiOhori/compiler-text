@@ -1,0 +1,9 @@
+_require "basis.smi"
+structure Token = 
+struct
+  datatype token
+  = EOF | UNDERBAR | ID of string
+  | STRING of string | REAL of string
+  | SPECIAL of string
+  val toString : token -> string
+end

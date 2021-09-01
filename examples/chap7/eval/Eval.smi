@@ -1,0 +1,8 @@
+_require "basis.smi"
+_require "compiler/libs/env/main/SEnv.smi"
+_require "../parser/Syntax.smi"
+_require "./Value.smi"
+structure Eval = struct
+  exception RuntimeError
+  val eval : Value.env -> Syntax.dec -> Value.env
+end

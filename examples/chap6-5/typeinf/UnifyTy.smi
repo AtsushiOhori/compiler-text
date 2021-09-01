@@ -1,0 +1,10 @@
+_require "basis.smi"
+_require "compiler/libs/env/main/SSet.smi"
+_require "compiler/libs/env/main/SEnv.smi"
+_require "./Type.smi"
+_require "./TypeUtils.smi"
+structure UnifyTy = struct
+  exception UnifyTy
+  val FTV : Type.ty -> SSet.set
+  val unify : (Type.ty * Type.ty) list -> TypeUtils.subst
+end

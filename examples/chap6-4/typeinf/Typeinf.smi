@@ -1,0 +1,10 @@
+_require "basis.smi"
+_require "../parser/Syntax.smi"
+_require "./Type.smi"
+_require "./TypeUtils.smi"
+_require "./UnifyTy.smi"
+structure Typeinf = 
+struct
+  exception TypeError
+  val typeinf : Syntax.dec -> unit
+end

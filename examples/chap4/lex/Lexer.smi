@@ -1,0 +1,8 @@
+_require "basis.smi"
+_require "./Token.smi"
+_require "./CoreML.lex.smi"
+structure Lexer =
+struct
+ exception EOF
+ val makeLexer : TextIO.instream -> unit -> Token.token
+end

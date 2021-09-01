@@ -1,0 +1,7 @@
+_require "basis.smi"
+_require "../parser/Syntax.smi"
+_require "./Instruction.smi"
+structure Comp =
+struct
+  val compile : Syntax.dec -> string * Instruction.C
+end

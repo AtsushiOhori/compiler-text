@@ -1,0 +1,6 @@
+_require "basis.smi"
+_require "../readstring/ReadString.smi"
+structure Top =
+struct
+  val top : string -> unit
+end

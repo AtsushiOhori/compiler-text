@@ -1,0 +1,13 @@
+_require "basis.smi"
+_require "compiler/libs/env/main/SEnv.smi"
+_require "compiler/libs/env/main/SSet.smi"
+_require "../parser/Syntax.smi"
+_require "./Type.smi"
+_require "./TypeUtils.smi"
+_require "./UnifyTy.smi"
+
+structure Typeinf = 
+struct
+  exception TypeError
+  val typeinf : TypeUtils.tyEnv -> Syntax.dec -> TypeUtils.tyEnv
+end

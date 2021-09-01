@@ -1,0 +1,6 @@
+_require "basis.smi"
+_require "./Token.smi"
+structure CoreMLLex =
+struct
+  val makeLexer : (int -> string) -> unit -> Token.token
+end

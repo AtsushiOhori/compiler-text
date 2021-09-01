@@ -1,0 +1,39 @@
+%%
+%pos int
+%term ADD | COMMA | DARROW | DIV | ELSE | EOF | EQ | EQUAL 
+    | FALSE | FN | FUN | HASH1 | HASH2 | ID of string | IF 
+    | INT of int | LPAREN | MUL | RPAREN | SEMICOLON
+    | STRING of string | SUB | THEN | TRUE | VAL
+%nonterm appexp of Syntax.exp | atexp of Syntax.exp  
+       | const of Syntax.exp  | exp of Syntax.exp    
+       | dec of Syntax.dec    | top of Syntax.dec
+       | prim of Syntax.prim
+%start top
+%name CoreML
+%eop EOF SEMICOLON
+%noshift EOF
+%%
+top : dec (dec) 
+dec : VAL ID EQUAL exp (Syntax.VAL(ID,exp))
+    | FUN ID ID EQUAL exp 
+      (Syntax.VAL(ID1, Syntax.EXPFIX(ID1, ID2, exp)))
+exp : appexp (appexp)
+    | IF exp THEN exp ELSE exp (Syntax.EXPIF(exp1, exp2, exp3))
+    | FN ID DARROW exp (Syntax.EXPFN(ID, exp))
+appexp : atexp (atexp)
+       | appexp atexp (Syntax.EXPAPP(appexp, atexp))
+atexp : const (const)
+      | ID (Syntax.EXPID(ID))
+      | LPAREN exp COMMA exp RPAREN
+        (Syntax.EXPPAIR(exp1, exp2))
+      | LPAREN exp RPAREN (exp)
+      | HASH1 atexp (Syntax.EXPPROJ1 atexp)
+      | HASH2 atexp (Syntax.EXPPROJ2 atexp)
+      | prim LPAREN exp COMMA exp RPAREN
+        (Syntax.EXPPRIM(prim, exp1, exp2))
+const : INT (Syntax.INT(INT))
+      | STRING (Syntax.STRING(STRING))
+      | TRUE (Syntax.TRUE) | FALSE (Syntax.FALSE)
+prim : EQ (Syntax.EQ) | ADD (Syntax.ADD) | SUB (Syntax.SUB) 
+     | MUL (Syntax.MUL) | DIV (Syntax.DIV) 
+

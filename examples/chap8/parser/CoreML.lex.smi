@@ -1,0 +1,8 @@
+_require "basis.smi"
+_require "ml-yacc-lib.smi"
+_require "./CoreML.grm.smi"
+structure CoreMLLex =
+struct
+  val makeLexer : (int -> string) -> unit 
+                  -> CoreMLLrVals.Tokens.token
+end

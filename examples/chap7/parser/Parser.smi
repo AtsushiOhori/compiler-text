@@ -1,0 +1,12 @@
+_require "basis.smi"
+_require "./Syntax.smi"
+_require "./CoreML.lex.smi"
+_require "./CoreML.grm.smi"
+structure Parser =
+struct
+  exception EOF
+  exception ParseError = CoreMLLrVals.Parser.ParseError
+  type stream (= CoreMLLrVals.Parser.stream)
+  val doParse : stream -> Syntax.dec * stream
+  val makeStream : TextIO.instream -> stream
+end
